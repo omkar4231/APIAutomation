@@ -77,7 +77,7 @@ public class userTest {
 	@Test(priority = 4)
 	public void testDeleteUser() {
 		logger.info("***********Deleting the User info***************");
-		// this will change the on data from payload body for updating the user profile
+		// this will delete the user data based on username
 		Response res = userEndpoints.updateUser(this.payload.getUsername(), payload);
 		Assert.assertEquals(res.getStatusCode(), 200);
 
