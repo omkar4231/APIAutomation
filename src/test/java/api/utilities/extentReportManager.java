@@ -20,6 +20,7 @@ public class extentReportManager implements ITestListener{
 	public ExtentReports extents;
 	public ExtentTest test;
 	String repname;
+	String Omkar;
 	
 	public void onStart(ITestContext context)
 	{
