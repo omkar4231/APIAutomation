@@ -11,9 +11,9 @@ import io.restassured.response.Response;
 
 public class DDTests {
 
-	 @Test (dataProvider="Data",dataProviderClass=dataprovider.class)
-	 public void testPostUser(String UserID,String Username,String Firstname,String Lastname,String Email ,String Password,String Phone) 
-	 {  
+	@Test(dataProvider = "Data", dataProviderClass = dataprovider.class)
+	public void testPostUser(String UserID, String Username, String Firstname, String Lastname, String Email,
+			String Password, String Phone) {
 		User payload = new User();
 		payload.setId(Integer.parseInt(UserID));
 		payload.setUsername(Username);
@@ -22,8 +22,8 @@ public class DDTests {
 		payload.setEmail(Email);
 		payload.setPassword(Password);
 		payload.setPhone(Phone);
-		
+
 		Response response = userEndpoints.createUser(payload);
-		response.then().log().all(); 
-	 }
+		response.then().log().all();
+	}
 }
