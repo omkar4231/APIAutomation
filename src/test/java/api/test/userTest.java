@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import com.github.javafaker.Faker;
 
 import api.Endpoints.userEndpoints;
+import api.Endpoints.userEndpoints2;
 import api.payload.User;
 import io.restassured.response.Response;
 
@@ -39,7 +40,7 @@ public class userTest {
 	public void testPostUser() {
 		logger.info("***********creating user***************");
 		// it will create the user profile
-		Response res = userEndpoints.createUser(payload);
+		Response res = userEndpoints2.createUser(payload);
 		res.then().log().all();
 		Assert.assertEquals(res.getStatusCode(), 200);
 		logger.info("***********User Created***************");
@@ -49,7 +50,7 @@ public class userTest {
 	public void testGetUser() {
 		logger.info("***********Reading user info***************");
 		// it will get the user data information
-		Response res = userEndpoints.getUser(this.payload.getUsername());
+		Response res = userEndpoints2.getUser(this.payload.getUsername());
 		res.then().log().all();
 		Assert.assertEquals(res.getStatusCode(), 200);
 		logger.info("***********User info is displayed***************");
@@ -57,7 +58,6 @@ public class userTest {
 
 	@Test(priority = 3)
 	public void testUpdateUser() {
-
 		// this will change the only data from payload body for updating the user
 		// profile
 		logger.info("***********Upadting User***************");
@@ -65,10 +65,10 @@ public class userTest {
 		payload.setFirstname(faker.name().firstName());
 		payload.setLastname(faker.name().lastName());
 
-		Response res = userEndpoints.updateUser(this.payload.getUsername(), payload);
+		Response res = userEndpoints2.updateUser(this.payload.getUsername(), payload);
 		Assert.assertEquals(res.getStatusCode(), 200);
 
-		Response resafterupdate = userEndpoints.getUser(this.payload.getUsername());
+		Response resafterupdate = userEndpoints2.getUser(this.payload.getUsername());
 		resafterupdate.then().log().all();
 		Assert.assertEquals(resafterupdate.getStatusCode(), 200);
 		logger.info("***********User info is Updated***************");
@@ -78,10 +78,10 @@ public class userTest {
 	public void testDeleteUser() {
 		logger.info("***********Deleting the User info***************");
 		// this will delete the user data based on username
-		Response res = userEndpoints.updateUser(this.payload.getUsername(), payload);
+		Response res = userEndpoints2.updateUser(this.payload.getUsername(), payload);
 		Assert.assertEquals(res.getStatusCode(), 200);
 
-		Response resafterdeletion = userEndpoints.getUser(this.payload.getUsername());
+		Response resafterdeletion = userEndpoints2.getUser(this.payload.getUsername());
 		resafterdeletion.then().log().all();
 		Assert.assertEquals(resafterdeletion.getStatusCode(), 200);
 		logger.info("***********User info is Deleted***************");
